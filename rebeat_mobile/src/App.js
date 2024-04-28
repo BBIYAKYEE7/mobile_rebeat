@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { AreaChart, Area, Tooltip } from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
+import text_logo from './text_logo.png';
 import './App.css';
 
 function MobilePage() {
-  const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
-  const minutes = Math.floor(data.elapsed_time / 60);
-  const seconds = data.elapsed_time % 60;
+    const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
+    const minutes = Math.floor(data.elapsed_time / 60);
+    const seconds = data.elapsed_time % 60;
+
+  const scrollRef = useRef();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -36,19 +39,26 @@ function MobilePage() {
     };
   }, []);
 
+  useEffect(() => {
+    // Scroll to the start of the div whenever data.score changes
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [data.score]);
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={icon} alt="icon" style={{ height: '29.07px', width: '25px', marginRight: '10px', marginLeft: '40px', marginTop: '40px'}} />
-        <h1 style={{ fontSize: '20px', marginTop: '55px'}}>Los Angeles Convention Center</h1>
+        <img src={icon} alt="icon" style={{ height: '29.07px', width: '25px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
+        <h1 style={{ fontSize: '20px', marginTop: '55px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
-      <p style={{ marginTop: '100px', width: '120px', marginLeft: '40px'}}>Elapsed time</p>
-      <p style={{ fontWeight: '600', width: '120px', marginLeft: '40px'}}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
-      <h2 style={{ marginTop: '36px', width: '280px', marginLeft: '40px'}}>Real-time averages</h2>
-      <p style={{ marginTop: '12px', width: '280px', marginLeft: '40px'}}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
-      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px'}}>Compression Depth: {data.depth}cm</p>
-      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px'}}>Compression Cycle: {data.cycle}bpm</p>
-      <div style={{ overflowX: 'scroll' }}>
+      <p style={{ marginTop: '100px', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
+      <p style={{ fontWeight: '600', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
+      <h2 style={{ marginTop: '36px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
+      <p style={{ marginTop: '12px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
+      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
+      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
+      <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
           height={440}
@@ -63,9 +73,11 @@ function MobilePage() {
           <Tooltip />
           <Area type="monotone" dataKey="score" stroke="#8884d8" fill="#8884d8" isAnimationActive={false} />
         </AreaChart>
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '830px', left: '290px', height: '27.13px', width: '94.51px' }} />
+        <q style={{ position: 'fixed', top: '630px', left: '80px', fontSize: '19.78px', color:'#FFFFFF', opacity: '50%'}}>Score change trend graph</q>
       </div>
     </div>
   );
 }
 
-export default MobilePage;
+export default MobilePage; 

@@ -61,7 +61,7 @@ function MobilePage() {
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
-          height={30}
+          height={330}
           data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
             top: 10,
@@ -73,8 +73,8 @@ function MobilePage() {
           <Tooltip />
           <Area type="monotone" dataKey="score" stroke="#8884d8" fill="#8884d8" isAnimationActive={false} />
         </AreaChart>
-        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '73%', left: '25%', height: '3em', width: '10em' }} />
-        <q style={{ position: 'fixed', top: '50%', left: '50%', fontSize: '2em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '58%', height: '2em', width: '6.5em' }} />
+        <q style={{ position: 'fixed', top: '60%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
     </div>
   );

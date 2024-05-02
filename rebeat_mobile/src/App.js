@@ -7,9 +7,9 @@ import text_logo from './text_logo.png';
 import './App.css';
 
 function MobilePage() {
-    const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
-    const minutes = Math.floor(data.elapsed_time / 60);
-    const seconds = data.elapsed_time % 60;
+  const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
+  const minutes = Math.floor(data.elapsed_time / 60);
+  const seconds = data.elapsed_time % 60;
 
   const scrollRef = useRef();
 
@@ -52,12 +52,12 @@ function MobilePage() {
         <img src={icon} alt="icon" style={{ height: '29.07px', width: '25px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
         <h1 style={{ fontSize: '20px', marginTop: '55px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
-      <p style={{ marginTop: '100px', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
-      <p style={{ fontWeight: '600', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
-      <h2 style={{ marginTop: '36px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
-      <p style={{ marginTop: '12px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
-      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
-      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
+      <p style={{ marginTop: '10%', width: '15%', marginLeft: '5%', wordSpacing: '-2%' }}>Elapsed time</p>
+      <p style={{ fontWeight: '600', width: '15%', marginLeft: '5%', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
+      <h2 style={{ marginTop: '4%', width: '35%', marginLeft: '5%', wordSpacing: '-2%' }}>Real-time averages</h2>
+      <p style={{ marginTop: '1%', width: '35%', marginLeft: '5%', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
+      <p style={{ marginTop: '1%', width: '35%', marginLeft: '5%', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
+      <p style={{ marginTop: '1%', width: '35%', marginLeft: '5%', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
@@ -73,8 +73,8 @@ function MobilePage() {
           <Tooltip />
           <Area type="monotone" dataKey="score" stroke="#8884d8" fill="#8884d8" isAnimationActive={false} />
         </AreaChart>
-        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '730px', left: '250px', height: '27.13px', width: '94.51px' }} />
-        <q style={{ position: 'fixed', top: '580px', left: '50%', fontSize: '19.78px', color:'#FFFFFF', opacity: '50%'}}>Score change trend graph</q>
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '73%', left: '25%', height: '3em', width: '10em' }} />
+        <q style={{ position: 'fixed', top: '50%', left: '50%', fontSize: '2em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
     </div>
   );

@@ -71,7 +71,7 @@ function MobilePage() {
           }}
         >
           <Tooltip />
-          <Area type="monotone" dataKey="score" stroke="#8884d8" fill="#8884d8" isAnimationActive={false} />
+          <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} />
         </AreaChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '58%', height: '2em', width: '6.5em' }} />
         <q style={{ position: 'fixed', top: '60%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>

@@ -39,6 +39,19 @@ function MobilePage() {
     };
   }, []);
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`Time : ${label}`}</p>
+          <p className="intro">{`Score : ${payload[0].value}`}</p>
+        </div>
+      );
+    }
+  
+    return null;
+  };
+
   useEffect(() => {
     // Scroll to the start of the div whenever data.score changes
     if (scrollRef.current) {
@@ -70,6 +83,7 @@ function MobilePage() {
             bottom: 0,
           }}
         >
+          <CustomTooltip />
           <Tooltip />
           <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} />
         </AreaChart>

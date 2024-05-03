@@ -89,8 +89,8 @@ function MobilePage() {
           <YAxis domain={[10, 0]} yAxisId="left" />
           <YAxis domain={[0, 10]} yAxisId="right" orientation="right" />
           <Tooltip />
-          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={0.1} yAxisId="left" />
-          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={0.1} yAxisId="right" />
+          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={0.5} yAxisId="left" />
+          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={0.5} yAxisId="right" />
         </LineChart>
       </div>
     </div >

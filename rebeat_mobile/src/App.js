@@ -77,7 +77,7 @@ function MobilePage() {
         <h1 style={{ fontSize: '20px', marginTop: '51px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
       <p style={{ fontSize: '20px',marginTop: '15%', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
-      <p style={{ fontWeight: '900', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
+      <p style={{ fontWeight: '900', width: '120px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
       <h2 style={{ marginTop: '34px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
       <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
       <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>

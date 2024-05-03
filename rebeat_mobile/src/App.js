@@ -90,7 +90,7 @@ function App() {
       <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
       <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll' }}>
-        <Line data={chartData} options={options} />
+        <Line data={chartData} options={options}/>
       </div>
     </div>
   );

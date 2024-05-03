@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Chart from 'chart.js/auto';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
 import text_logo from './text_logo.png';
 import './App.css';
+import { Line } from 'react-chartjs-2';
 
 function MobilePage() {
   const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
@@ -12,7 +12,6 @@ function MobilePage() {
   const seconds = data.elapsed_time % 60;
 
   const scrollRef = useRef();
-  const chartRef = useRef();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -46,44 +45,21 @@ function MobilePage() {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
     }
-
-    // Update Chart.js data whenever data.score changes
-    if (chartRef.current) {
-      const ctx = chartRef.current.getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: data.score.map((_, index) => index + 1),
-          datasets: [{
-            label: 'Score',
-            data: data.score,
-            borderColor: '#6B62F1',
-            backgroundColor: '#6B62F1',
-            borderWidth: 1,
-            fill: false,
-          }],
-        },
-        options: {
-          scales: {
-            x: {
-              display: true,
-              title: {
-                display: true,
-                text: 'Time',
-              },
-            },
-            y: {
-              display: true,
-              title: {
-                display: true,
-                text: 'Score',
-              },
-            },
-          },
-        },
-      });
-    }
   }, [data.score]);
+
+  const chartData = {
+    labels: data.score.map((_, index) => index + 1),
+    datasets: [
+      {
+        label: 'Score',
+        data: data.score,
+        borderColor: '#6B62F1',
+        backgroundColor: '#6B62F1',
+        borderWidth: 1,
+        fill: false,
+      },
+    ],
+  };
 
   return (
     <div>
@@ -98,7 +74,7 @@ function MobilePage() {
       <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
       <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}>
-        <canvas ref={chartRef} />
+        <Line data={chartData} />
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '58%', height: '2em', width: '6.5em' }} />
         <q style={{ position: 'fixed', top: '65%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>

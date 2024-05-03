@@ -3,7 +3,6 @@ import { LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid } from 'recharts'
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
-import text_logo from './text_logo.png';
 import './App.css';
 
 function MobilePage() {
@@ -75,12 +74,12 @@ function MobilePage() {
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <LineChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
-          height={370}
+          height={360}
           data={data.score.map((score, index) => ({ time: index + 1, score, depth: data.depth_g[index] }))}
           margin={{
             top: 10,
             right: 0,
-            left: 0,
+            left: -30,
             bottom: 0,
           }}
         >
@@ -89,8 +88,8 @@ function MobilePage() {
           <YAxis domain={[10, 0]} yAxisId="left" />
           <YAxis domain={[0, 10]} yAxisId="right" orientation="right" />
           <Tooltip />
-          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={0.5} yAxisId="left" />
-          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={0.5} yAxisId="right" />
+          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={1} yAxisId="left" />
+          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={1} yAxisId="right" />
         </LineChart>
       </div>
     </div >

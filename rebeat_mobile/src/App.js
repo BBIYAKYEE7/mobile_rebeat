@@ -1,12 +1,24 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid } from 'recharts';
+import React, { useEffect, useState, useRef} from 'react';
+import { AreaChart, Area, Tooltip } from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
+import text_logo from './text_logo.png';
 import './App.css';
 
+const CustomLabel = ({ x, y, value }) => {
+  return (
+    <g>
+      <polygon points={`${x},${y} ${x+10},${y-10} ${x+70},${y-10} ${x+70},${y+10} ${x+10},${y+10}`} fill="#6B62F1" />
+      <text x={x+15} y={y} fill="#fff" textAnchor="middle" dominantBaseline="middle">
+        {value}
+      </text>
+    </g>
+  );
+};
+
 function MobilePage() {
-  const [data, setData] = useState({ score: [], depth_g: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
+  const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
   const minutes = Math.floor(data.elapsed_time / 60);
   const seconds = data.elapsed_time % 60;
 
@@ -30,7 +42,6 @@ function MobilePage() {
       setData(prevData => ({
         ...newData,
         score: [...prevData.score, newData.score],
-        depth_g: [...prevData.depth_g, newData.depth_g],
       }));
     });
 
@@ -48,7 +59,7 @@ function MobilePage() {
         </div>
       );
     }
-
+    
     return null;
   };
 
@@ -63,37 +74,35 @@ function MobilePage() {
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <img src={icon} alt="icon" style={{ height: '25.07px', width: '21px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
-        <h1 style={{ fontSize: '18px', marginTop: '51px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
+        <h1 style={{ fontSize: '20px', marginTop: '51px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
-      <p style={{ marginTop: '100px', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
-      <p style={{ fontWeight: '600', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
-      <h2 style={{ marginTop: '36px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
-      <p style={{ marginTop: '12px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
-      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
-      <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
+      <p style={{ marginTop: '80px', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
+      <p style={{ fontWeight: '900', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
+      <h2 style={{ marginTop: '34px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
+      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
+      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
+      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
-        <LineChart
+        <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
-          height={360}
-          data={data.score.map((score, index) => ({ time: index + 1, score, depth: data.depth_g[index] }))}
+          height={370}
+          data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
             top: 10,
             right: 0,
-            left: -30,
+            left: 0,
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis domain={[10, 0]} yAxisId="left" />
-          <YAxis domain={[0, 10]} yAxisId="right" orientation="right" />
+          <CustomTooltip />
           <Tooltip />
-          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={1} yAxisId="left" />
-          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={1} yAxisId="right" />
-        </LineChart>
+          <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true}/>
+        </AreaChart>
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '73%', height: '1.5em', width: '4.8em' }} />
+        <q style={{ position: 'fixed', top: '78%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
-    </div >
+    </div>
   );
 }
 
-export default MobilePage;
+export default MobilePage; 

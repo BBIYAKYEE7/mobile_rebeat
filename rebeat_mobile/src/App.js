@@ -89,11 +89,9 @@ function MobilePage() {
           <YAxis domain={[10, 0]} yAxisId="left" />
           <YAxis domain={[0, 10]} yAxisId="right" orientation="right" />
           <Tooltip />
-          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={0} yAxisId="left" />
-          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={0} yAxisId="right" />
+          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={0.1} yAxisId="left" />
+          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={0.1} yAxisId="right" />
         </LineChart>
-        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '70%', height: '2em', width: '6.5em' }} />
-        <q style={{ position: 'fixed', top: '65%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
     </div >
   );

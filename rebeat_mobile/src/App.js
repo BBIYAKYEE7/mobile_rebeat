@@ -85,7 +85,7 @@ function MobilePage() {
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
-          height={390}
+          height={410}
           data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
             top: 10,

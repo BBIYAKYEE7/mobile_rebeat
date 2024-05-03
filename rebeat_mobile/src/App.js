@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 import { AreaChart, Area, Tooltip } from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
@@ -62,8 +62,8 @@ function MobilePage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={icon} alt="icon" style={{ height: '29.07px', width: '25px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
-        <h1 style={{ fontSize: '20px', marginTop: '55px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
+        <img src={icon} alt="icon" style={{ height: '25.07px', width: '21px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
+        <h1 style={{ fontSize: '18px', marginTop: '51px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
       <p style={{ marginTop: '100px', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
       <p style={{ fontWeight: '600', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
@@ -74,7 +74,7 @@ function MobilePage() {
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
-          height={380}
+          height={370}
           data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
             top: 10,
@@ -88,7 +88,7 @@ function MobilePage() {
           <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} />
         </AreaChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '58%', height: '2em', width: '6.5em' }} />
-        <q style={{ position: 'fixed', top: '60%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
+        <q style={{ position: 'fixed', top: '65%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
     </div>
   );

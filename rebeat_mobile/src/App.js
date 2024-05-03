@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect, useState, useRef } from 'react';
+import { LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid } from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
+import text_logo from './text_logo.png';
 import './App.css';
 
-function App() {
-  const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
+function MobilePage() {
+  const [data, setData] = useState({ score: [], depth_g: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
   const minutes = Math.floor(data.elapsed_time / 60);
   const seconds = data.elapsed_time % 60;
+
+  const scrollRef = useRef();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -28,6 +31,7 @@ function App() {
       setData(prevData => ({
         ...newData,
         score: [...prevData.score, newData.score],
+        depth_g: [...prevData.depth_g, newData.depth_g],
       }));
     });
 
@@ -36,46 +40,25 @@ function App() {
     };
   }, []);
 
-  const chartData = {
-    labels: data.score.map((_, index) => index + 1),
-    datasets: [
-      {
-        label: 'Score',
-        data: data.score,
-        fill: false,
-        backgroundColor: 'rgb(107, 98, 241)',
-        borderColor: 'rgba(107, 98, 241, 0.2)',
-      },
-    ],
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`Time : ${label}`}</p>
+          <p className="intro">{`Score : ${payload[0].value}`}</p>
+        </div>
+      );
+    }
+
+    return null;
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      tooltip: {
-        enabled: true,
-      },
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      x: {
-        display: true,
-        title: {
-          display: true,
-          text: 'Time',
-        },
-      },
-      y: {
-        display: true,
-        title: {
-          display: true,
-          text: 'Score',
-        },
-      },
-    },
-  };
+  useEffect(() => {
+    // Scroll to the start of the div whenever data.score changes
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [data.score]);
 
   return (
     <div>
@@ -89,11 +72,31 @@ function App() {
       <p style={{ marginTop: '12px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
       <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
       <p style={{ marginTop: '10px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
-      <div style={{ position: 'relative', overflowX: 'scroll' }}>
-        <Line data={chartData} options={options}/>
+      <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
+        <LineChart
+          width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
+          height={370}
+          data={data.score.map((score, index) => ({ time: index + 1, score, depth: data.depth_g[index] }))}
+          margin={{
+            top: 10,
+            right: 0,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="time" />
+          <YAxis domain={[10, 0]} yAxisId="left" />
+          <YAxis domain={[0, 10]} yAxisId="right" orientation="right" />
+          <Tooltip />
+          <Line type="monotone" dataKey="score" stroke="#8884d8" strokeDasharray="5 5" animationDuration={0} yAxisId="left" />
+          <Line type="monotone" dataKey="depth" stroke="#82ca9d" strokeDasharray="5 5" animationDuration={0} yAxisId="right" />
+        </LineChart>
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '70%', height: '2em', width: '6.5em' }} />
+        <q style={{ position: 'fixed', top: '65%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
-    </div>
+    </div >
   );
 }
 
-export default App;
+export default MobilePage;

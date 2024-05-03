@@ -98,7 +98,7 @@ function MobilePage() {
           <Tooltip />
           <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true}/>
         </AreaChart>
-        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '88%', left: '73%', height: '1.5em', width: '4.8em' }} />
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
         <q style={{ position: 'fixed', top: '78%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
       </div>
     </div>

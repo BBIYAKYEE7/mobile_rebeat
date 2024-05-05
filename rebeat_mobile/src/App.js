@@ -100,10 +100,10 @@ function MobilePage() {
           <div style={{ marginRight: '25px' }}>{data.cycle}bpm</div>
         </div>
       </p>
-      <img src={legend_s} alt="score" style={{ position: 'fixed', top: '47%', left: '10%', height: '0.5em', width: '0.5em' }} />
-      <q style={{ position: 'fixed', top: '46.3%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>Score</q>
-      <img src={legend_d} alt="score" style={{ position: 'fixed', top: '50%', left: '10%', height: '0.5em', width: '0.5em' }} />
-      <q style={{ position: 'fixed', top: '49.3%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%'}}>Depth</q>
+      <img src={legend_s} alt="score" style={{ position: 'fixed', top: '50%', left: '10%', height: '0.5em', width: '0.5em' }} />
+      <q style={{ position: 'fixed', top: '49.3%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>Score</q>
+      <img src={legend_d} alt="score" style={{ position: 'fixed', top: '53%', left: '10%', height: '0.5em', width: '0.5em' }} />
+      <q style={{ position: 'fixed', top: '52.3%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%'}}>Depth</q>
       <div style={{ position: 'relative', overflowX: 'scroll', marginBottom: '-200px' }} ref={scrollRef}> { }
         <ComposedChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points

@@ -98,10 +98,10 @@ function MobilePage() {
           <div style={{marginRight: '30px'}}>{data.cycle}bpm</div>
         </div>
       </p>
-      <div style={{ position: 'relative', overflowX: 'scroll'}} ref={scrollRef}> { }
+      <div style={{ position: 'relative', overflowX: 'scroll', marginBottom: '-10px'}} ref={scrollRef}> { }
         <ComposedChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points
-          height={360}
+          height={300}
           data={data.depth.map((depth, index) => ({ time: index + 1, depth, score: data.score[index] }))}
           margin={{
             top: 30,

@@ -42,7 +42,7 @@ function MobilePage() {
     channel.bind('my-event', function (newData) {
       setData(prevData => ({
         ...newData,
-        score: [...prevData.score, newData.score],
+        score: [...prevData.score, Math.max(0, newData.score)],
       }));
     });
 

@@ -89,7 +89,7 @@ function MobilePage() {
           height={400}
           data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
-            top: 10,
+            top: 15,
             right: 0,
             left: 0,
             bottom: 0,

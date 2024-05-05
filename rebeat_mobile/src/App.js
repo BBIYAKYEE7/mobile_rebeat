@@ -110,9 +110,6 @@ function MobilePage() {
             bottom: 0,
           }}
         >
-          <XAxis dataKey="time" />
-          <YAxis yAxisId="left" domain={['dataMin', 'dataMax']} />
-          <YAxis yAxisId="right" orientation="right" domain={['dataMin', 'dataMax']} />
           <Tooltip />
           <Area yAxisId="left" type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962e9" isAnimationActive={false} />
           <Line yAxisId="right" type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} />

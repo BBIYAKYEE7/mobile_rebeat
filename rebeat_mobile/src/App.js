@@ -78,12 +78,12 @@ function MobilePage() {
         <img src={icon} alt="icon" style={{ height: '25.07px', width: '21px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
         <h1 style={{ fontSize: '20px', marginTop: '51px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
-      <p style={{ fontSize: '20px', marginTop: '15%', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
-      <p style={{ fontWeight: '900', width: '120px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
-      <h2 style={{ marginTop: '34px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
-      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {Math.round(data.score[data.score.length - 1])}</p>
-      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {(data.depth[data.depth.length - 1])}cm</p>
-      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
+      <p style={{ fontSize: '22.26px', marginTop: '15%', width: '200px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
+      <p style={{ fontSize: '22.26px', fontWeight: '900', width: '200px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
+      <h2 style={{ fontSize: '22.89px', marginTop: '34px', width: '350px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
+      <p style={{ fontSize: '22.26px', marginTop: '-5px', width: '350px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {Math.round(data.score[data.score.length - 1])}</p>
+      <p style={{ fontSize: '22.26px', marginTop: '-5px', width: '350px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {(data.depth[data.depth.length - 1])}cm</p>
+      <p style={{ fontSize: '22.26px', marginTop: '-5px', width: '350px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points

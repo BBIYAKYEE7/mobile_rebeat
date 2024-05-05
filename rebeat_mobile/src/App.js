@@ -84,10 +84,10 @@ function MobilePage() {
       <p style={{ fontSize: '22.26px', marginTop: '-2px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {Math.round(data.score[data.score.length - 1])}</p>
       <p style={{ fontSize: '22.26px', marginTop: '-2px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {(data.depth[data.depth.length - 1])}cm</p>
       <p style={{ fontSize: '22.26px', marginTop: '-2px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
-      <div style={{ position: 'relative', overflowX: 'scroll', marginTop: '-30px'}} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
+      <div style={{ position: 'relative', overflowX: 'scroll'}} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points
-          height={400}
+          height={380}
           data={data.depth.map((depth, index) => ({ time: index + 1, depth }))}
           margin={{
             top: 10,

@@ -101,7 +101,7 @@ function MobilePage() {
       <div style={{ position: 'relative', overflowX: 'scroll'}} ref={scrollRef}> { }
         <ComposedChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points
-          height={380}
+          height={360}
           data={data.depth.map((depth, index) => ({ time: index + 1, depth, score: data.score[index] }))}
           margin={{
             top: 30,

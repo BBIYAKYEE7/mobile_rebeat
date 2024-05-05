@@ -75,7 +75,7 @@ function MobilePage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={icon} alt="icon" style={{ height: '29.07px', marginLeft:'5.5%', marginTop: '40px' }} />
+        <img src={icon} alt="icon" style={{ height: '29.07px', marginLeft:'5.5%', marginRight: '10px', marginTop: '40px' }} />
         <h1 style={{ fontSize: '22.01px', marginTop: '51px', wordSpacing: '-2%', fontWeight: '600'}}>Los Angeles Convention Center</h1>
       </div>
       <p style={{ fontSize: '22.26px', marginTop: '15%', width: '200px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
@@ -98,7 +98,7 @@ function MobilePage() {
         >
           <CustomTooltip />
           <Tooltip />
-          <Area type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962e9" isAnimationActive={false} label={true} />
+          <Area type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true} />
         </AreaChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
         <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>

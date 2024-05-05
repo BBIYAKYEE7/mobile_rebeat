@@ -79,7 +79,7 @@ function MobilePage() {
       </div>
       <p style={{ fontSize: '22.26px', marginTop: '15%', width: '150px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
       <p style={{ fontSize: '22.26px', fontWeight: '600', width: '150px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
-      <h2 style={{ fontSize: '22.89px', marginTop: '34px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
+      <h2 style={{ fontSize: '22.89px', marginTop: '34px', fontWeight: '600', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
       <p style={{ fontSize: '22.26px', marginTop: '-2px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div style={{ marginRight: '10px' }}>Composite CPR Score:</div>

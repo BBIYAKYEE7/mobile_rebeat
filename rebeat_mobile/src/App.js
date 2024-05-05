@@ -64,6 +64,8 @@ function MobilePage() {
     return null;
   };
 
+  let label = parseInt(label, 10);
+
   useEffect(() => {
     // Scroll to the start of the div whenever data.score changes
     if (scrollRef.current) {
@@ -89,7 +91,7 @@ function MobilePage() {
           height={400}
           data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
-            top: 10,
+            top: 30,
             right: 0,
             left: 0,
             bottom: 0,

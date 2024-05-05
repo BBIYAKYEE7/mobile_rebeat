@@ -79,7 +79,7 @@ function MobilePage() {
       <p style={{ fontSize: '20px',marginTop: '15%', width: '120px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
       <p style={{ fontWeight: '900', width: '120px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>
       <h2 style={{ marginTop: '34px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
-      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {data.score[data.score.length - 1]}</p>
+      <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Composite CPR Score: {Math.round(data.score[data.score.length - 1])}</p>
       <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {data.depth}cm</p>
       <p style={{ marginTop: '-5px', width: '280px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
@@ -99,7 +99,7 @@ function MobilePage() {
           <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true}/>
         </AreaChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
-        <q style={{ position: 'fixed', top: '78%', left: '25%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>Score change trend graph</q>
+        <q style={{ position: 'fixed', top: '78%', left: '15%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>CPR Compression Depth trend graph</q>
       </div>
     </div>
   );

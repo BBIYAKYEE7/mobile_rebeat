@@ -82,20 +82,20 @@ function MobilePage() {
       <h2 style={{ fontSize: '22.89px', marginTop: '34px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Real-time averages</h2>
       <p style={{ fontSize: '22.26px', marginTop: '-2px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div>Composite CPR Score:</div>
-          <div>{Math.round(data.score[data.score.length - 1])}</div>
+          <div style={{marginRight:'10px'}}>Composite CPR Score:</div>
+          <div style={{marginRight: '30px'}}>{Math.round(data.score[data.score.length - 1])}</div>
         </div>
       </p>
       <p style={{ fontSize: '22.26px', marginTop: '-15px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>Compression Depth:</div>
-          <div>{(data.depth[data.depth.length - 1])}cm</div>
+          <div style={{marginRight: '30px'}}>{(data.depth[data.depth.length - 1])}cm</div>
         </div>
       </p>
       <p style={{ fontSize: '22.26px', marginTop: '-15px', marginBottom: '40px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>Compression Cycle:</div>
-          <div>{data.cycle}bpm</div>
+          <div style={{marginRight: '30px'}}>{data.cycle}bpm</div>
         </div>
       </p>
       <div style={{ position: 'relative', overflowX: 'scroll', marginTop: '-30px' }} ref={scrollRef}> { }

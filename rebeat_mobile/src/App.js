@@ -75,7 +75,7 @@ function MobilePage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={icon} alt="icon" style={{ height: '25.07px', width: '21px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
+        <img src={icon} alt="icon" style={{ height: '44.72px', width: '38.46px', marginRight: '10px', marginLeft: '40px', marginTop: '40px' }} />
         <h1 style={{ fontSize: '20px', marginTop: '51px', wordSpacing: '-2%' }}>Los Angeles Convention Center</h1>
       </div>
       <p style={{ fontSize: '22.26px', marginTop: '15%', width: '200px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>

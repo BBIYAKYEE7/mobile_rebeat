@@ -101,7 +101,7 @@ function MobilePage() {
           <Area type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962e9" isAnimationActive={false} label={true} />
         </AreaChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
-        <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>CPR Compression Depth trend graph</q>
+        <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>
       </div>
     </div>
   );

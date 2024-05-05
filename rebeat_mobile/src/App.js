@@ -75,8 +75,8 @@ function MobilePage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={icon} alt="icon" style={{ height: '44.72px', alignItems:'center', marginTop: '40px' }} />
-        <h1 style={{ fontSize: '22.01px', marginTop: '51px', wordSpacing: '-2%', fontWeight: '500'}}>Los Angeles Convention Center</h1>
+        <img src={icon} alt="icon" style={{ height: '44.72px', marginLeft:'15%', marginTop: '40px' }} />
+        <h1 style={{ fontSize: '22.01px', marginTop: '51px', wordSpacing: '-2%', fontWeight: '800'}}>Los Angeles Convention Center</h1>
       </div>
       <p style={{ fontSize: '22.26px', marginTop: '15%', width: '200px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
       <p style={{ fontSize: '22.26px', fontWeight: '900', width: '200px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>

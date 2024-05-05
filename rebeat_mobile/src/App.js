@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ComposedChart, Line, Area, XAxis, YAxis, Tooltip } from 'recharts';
+import { ComposedChart, Line, Area, XAxis, YAxis, Tooltip} from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
 import text_logo from './text_logo.png';
 import './App.css';
+import legend_s from './legand(s).png';
+import legend_d from './legand(d).png';
 
 const CustomLabel = ({ x, y, value }) => {
   return (
@@ -98,6 +100,10 @@ function MobilePage() {
           <div style={{ marginRight: '25px' }}>{data.cycle}bpm</div>
         </div>
       </p>
+      <img src={legend_s} alt="score" style={{ position: 'fixed', top: '47%', left: '10%', height: '0.5em', width: '0.5em' }} />
+      <q style={{ position: 'fixed', top: '46.3%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>Score</q>
+      <img src={legend_d} alt="score" style={{ position: 'fixed', top: '50%', left: '10%', height: '0.5em', width: '0.5em' }} />
+      <q style={{ position: 'fixed', top: '49.3%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%'}}>Depth</q>
       <div style={{ position: 'relative', overflowX: 'scroll', marginBottom: '-200px' }} ref={scrollRef}> { }
         <ComposedChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points
@@ -111,7 +117,7 @@ function MobilePage() {
           }}
         >
           <Tooltip />
-          <Area yAxisId="left" type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962e9" isAnimationActive={false} label={true}/>
+          <Area yAxisId="left" type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962E9" isAnimationActive={false} label={true}/>
           <Line yAxisId="right" type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} strokeWidth={2} label={true}/>
           </ComposedChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />

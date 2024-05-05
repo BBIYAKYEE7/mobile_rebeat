@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ComposedChart, Area, Line } from 'recharts';
+import { ComposedChart, Line, Area } from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
@@ -57,7 +57,7 @@ function MobilePage() {
       return (
         <div className="custom-tooltip">
           <p className="label">{`Time : ${label}`}</p>
-          <p className="intro">{`Score : ${payload[0].value}`}</p>
+          <p className="intro">{`Depth : ${payload[0].value}`}</p>
         </div>
       );
     }
@@ -92,17 +92,17 @@ function MobilePage() {
           <div>{(data.depth[data.depth.length - 1])}cm</div>
         </div>
       </p>
-      <p style={{ fontSize: '22.26px', marginTop: '-15px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
+      <p style={{ fontSize: '22.26px', marginTop: '-15px', marginBottom: '40px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>Compression Cycle:</div>
           <div>{data.cycle}bpm</div>
         </div>
       </p>
-      <div style={{ position: 'relative', overflowX: 'scroll', marginTop: '-70px' }} ref={scrollRef}> { }
+      <div style={{ position: 'relative', overflowX: 'scroll', marginTop: '-30px' }} ref={scrollRef}> { }
         <ComposedChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points
           height={450}
-          data={data.depth.map((depth, index) => ({ time: index + 1, depth }))}
+          data={data.depth.map((depth, index) => ({ time: index + 1, depth, score: data.score[index] }))}
           margin={{
             top: 30,
             right: 0,
@@ -110,8 +110,8 @@ function MobilePage() {
             bottom: 0,
           }}
         >
-          <Area type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true} />
-          <Line type="monotone" dataKey="score" stroke="#ff7300" />
+          <Area type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962e9" isAnimationActive={false} label={true}/>
+          <Line type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} label={true} strokeWidth={2}/>
         </ComposedChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
         <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { AreaChart, Area, Tooltip, LineChart, Line } from 'recharts';
+import { ComposedChart, Area, Line } from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
@@ -85,7 +85,7 @@ function MobilePage() {
       <p style={{ fontSize: '22.26px', marginTop: '-15px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Depth: {(data.depth[data.depth.length - 1])}cm</p>
       <p style={{ fontSize: '22.26px', marginTop: '-15px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>Compression Cycle: {data.cycle}bpm</p>
       <div style={{ position: 'relative', overflowX: 'scroll', marginTop: '-70px'}} ref={scrollRef}> {}
-        <AreaChart
+        <ComposedChart
           width={Math.max(window.innerWidth, data.depth.length * 100)} // Set the width dynamically based on the number of data points
           height={450}
           data={data.depth.map((depth, index) => ({ time: index + 1, depth }))}
@@ -96,11 +96,9 @@ function MobilePage() {
             bottom: 0,
           }}
         >
-          <CustomTooltip />
-          <Tooltip />
           <Area type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true} />
-          <Area type="monotone" dataKey="score" stroke="#fff" fill="#fff" isAnimationActive={false} label={<CustomLabel />} />
-        </AreaChart>
+          <Line type="monotone" dataKey="score" stroke="#ff7300"/>
+        </ComposedChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
         <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>
       </div>

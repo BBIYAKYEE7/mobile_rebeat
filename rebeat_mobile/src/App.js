@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ComposedChart, Line, Area, XAxis, YAxis, Tooltip} from 'recharts';
+import { ComposedChart, Line, Area, XAxis, YAxis, Tooltip, Label} from 'recharts';
 import Pusher from 'pusher-js';
 import logo from './logo.png';
 import icon from './location.png';
@@ -8,17 +8,6 @@ import './App.css';
 import legend_s from './legand(s).png';
 import legend_d from './legand(d).png';
 
-const CustomLabel = ({ x, y, value }) => {
-  return (
-    <g>
-      <polygon points={`${x},${y} ${x + 10},${y - 10} ${x + 70},${y - 10} ${x + 70},${y + 10} ${x + 10},${y + 10}`} fill="#6B62F1" />
-      <text x={x + 15} y={y} fill="#fff" textAnchor="middle" dominantBaseline="middle">
-        {value}
-      </text>
-    </g>
-  );
-};
-
 function MobilePage() {
   const [data, setData] = useState({ score: [], depth: [], pressure: 0, cycle: 0, elapsed_time: 0 });
   const hours = Math.floor(data.elapsed_time / 3600);
@@ -26,6 +15,12 @@ function MobilePage() {
   const seconds = data.elapsed_time % 60;
 
   const scrollRef = useRef();
+
+  const CustomLabel = ({ x, y, stroke, value }) => (
+    <text x={x} y={y - 10} dy={-4} fontSize={15} textAnchor="middle">
+      {value}
+    </text>
+  );
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -117,8 +112,8 @@ function MobilePage() {
           }}
         >
           <Tooltip />
-          <Area yAxisId="left" type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962E9" isAnimationActive={false} label={true}/>
-          <Line yAxisId="right" type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} strokeWidth={2} label={true}/>
+          <Area yAxisId="left" type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962E9" isAnimationActive={false} label={<CustomLabel/>}/>
+          <Line yAxisId="right" type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} strokeWidth={2} label={<CustomLabel/>}/>
           </ComposedChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
         <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>

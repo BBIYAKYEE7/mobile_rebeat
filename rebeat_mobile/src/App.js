@@ -42,7 +42,7 @@ function MobilePage() {
     channel.bind('my-event', function (newData) {
       setData(prevData => ({
         ...newData,
-        score: [...prevData.score, Math.max(0, newData.score)],
+        score: [...prevData.score, newData.score],
       }));
     });
 
@@ -63,8 +63,6 @@ function MobilePage() {
     
     return null;
   };
-
-  let label = parseInt(label, 10);
 
   useEffect(() => {
     // Scroll to the start of the div whenever data.score changes

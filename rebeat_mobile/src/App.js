@@ -115,7 +115,7 @@ function MobilePage() {
           <Area yAxisId="left" type="monotone" dataKey="depth" stroke="#6B62F1" fill="#6962E9" isAnimationActive={false} label={<CustomLabel/>}/>
           <Line yAxisId="right" type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} strokeWidth={2} label={<CustomLabel/>}/>
           </ComposedChart>
-        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
+        <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em', opacity:'50%'}} />
         <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>
         </div>
     </div>

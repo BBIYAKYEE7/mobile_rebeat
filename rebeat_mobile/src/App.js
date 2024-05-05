@@ -18,10 +18,11 @@ const CustomLabel = ({ x, y, value }) => {
 };
 
 function MobilePage() {
-  
-  const totalSeconds = Math.floor(milliseconds / 1000);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
+  const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
+  const hours = Math.floor(data.elapsed_time / 3600);
+  const minutes = Math.floor((data.elapsed_time % 3600) / 60);
+  const seconds = data.elapsed_time % 60;
+
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -99,10 +100,10 @@ function MobilePage() {
           <Area type="monotone" dataKey="score" stroke="#6B62F1" fill="#6B62F1" isAnimationActive={false} label={true}/>
         </AreaChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em' }} />
-        <q style={{ position: 'fixed', top: '78%', left: '15%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>CPR Compression Depth trend graph</q>
+        <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#FFFFFF', opacity: '50%' }}>CPR Compression Depth trend graph</q>
       </div>
     </div>
   );
 }
 
-export default MobilePage; 
+export default MobilePage;

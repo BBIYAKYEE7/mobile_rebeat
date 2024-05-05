@@ -18,10 +18,10 @@ const CustomLabel = ({ x, y, value }) => {
 };
 
 function MobilePage() {
-  const [data, setData] = useState({ score: [], depth: 0, pressure: 0, cycle: 0, elapsed_time: 0 });
-  const minutes = Math.floor(data.elapsed_time / 60);
-  const seconds = data.elapsed_time % 60;
-
+  
+  const totalSeconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -85,7 +85,7 @@ function MobilePage() {
       <div style={{ position: 'relative', overflowX: 'scroll' }} ref={scrollRef}> {/* Change scrollRefq to scrollRef */}
         <AreaChart
           width={Math.max(window.innerWidth, data.score.length * 100)} // Set the width dynamically based on the number of data points
-          height={410}
+          height={400}
           data={data.score.map((score, index) => ({ time: index + 1, score }))}
           margin={{
             top: 10,

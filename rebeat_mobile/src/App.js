@@ -8,11 +8,21 @@ import './App.css';
 import legend_s from './legand(s).png';
 import legend_d from './legand(d).png';
 
+let is_init = false;
+
 function MobilePage() {
-  const [data, setData] = useState({ score: [], depth: [], pressure: 0, cycle: 0, elapsed_time: 0 });
-  const hours = Math.floor(data.elapsed_time / 3600);
-  const minutes = Math.floor((data.elapsed_time % 3600) / 60);
-  const seconds = data.elapsed_time % 60;
+  const [data, setData] = useState({ score: [], depth: [], pressure: 0, cycle: 0, elapsed_time: 0, utc_time: 0 });
+  const [startTime, setStartTime] = useState(Date.now());
+
+  // useEffect(() => {
+  //   setStartTime(Date.now());
+  // }, []);
+  
+
+  const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+  const hours = Math.floor(elapsedTime / 3600);
+  const minutes = Math.floor((elapsedTime % 3600) / 60);
+  const seconds = elapsedTime % 60;
 
   const scrollRef = useRef();
 
@@ -37,6 +47,11 @@ function MobilePage() {
 
     const channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function (newData) {
+      if (is_init == false) {
+        setStartTime(Date.now());
+        is_init = true;
+      }
+
       setData(prevData => ({
         ...newData,
         score: [...prevData.score, newData.score],
@@ -68,11 +83,19 @@ function MobilePage() {
     }
   }, [data.score], [data.depth]);
 
+  setInterval(() => {
+    if (is_init == true) {
+      setData(prevData => ({
+        ...prevData,
+      }))
+    }
+  }, 100);
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <img src={icon} alt="icon" style={{ height: '29.07px', marginLeft: '5.1%', marginRight: '10px', marginTop: '40px' }} />
-        <h1 style={{ fontSize: '22.01px', marginTop: '53px', wordSpacing: '-2%', fontWeight: '600' }}>Los Angeles Convention Center</h1>
+        <h1 style={{ fontSize: '22.01px', marginTop: '53px', wordSpacing: '-2%', fontWeight: 'bold' }}>Los Angeles Convention Center</h1>
       </div>
       <p style={{ fontSize: '22.26px', marginTop: '15%', width: '150px', marginLeft: '40px', wordSpacing: '-2%' }}>Elapsed time</p>
       <p style={{ fontSize: '22.26px', fontWeight: 'bold', width: '150px', marginTop: '-20px', marginLeft: '40px', wordSpacing: '-2%' }}>{`${minutes.toString().padStart(2, '0')}min ${seconds.toString().padStart(2, '0')}sec`}</p>

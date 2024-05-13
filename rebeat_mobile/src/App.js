@@ -114,7 +114,7 @@ function MobilePage() {
       </p>
       <p style={{ fontSize: '22.26px', marginTop: '-15px', marginBottom: '40px', width: '330px', marginLeft: '40px', wordSpacing: '-2%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div>Compression Cycle:</div>
+          <div>Compression Rate:</div>
           <div style={{ marginRight: '25px' }}>{data.cycle}bpm</div>
         </div>
       </p>
@@ -139,7 +139,6 @@ function MobilePage() {
           <Line yAxisId="right" type="monotone" dataKey="score" stroke="#ff7300" isAnimationActive={false} strokeWidth={2} label={<CustomLabel/>}/>
           </ComposedChart>
         <img src={text_logo} alt="text_logo" style={{ position: 'fixed', top: '95%', left: '73%', height: '1.5em', width: '4.8em', opacity:'50%'}} />
-        <q style={{ position: 'fixed', top: '78%', left: '14%', fontSize: '1em', color: '#000', opacity: '50%' }}>CPR Compression Depth trend graph</q>
         </div>
     </div>
   );
